@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Include Bulma CSS (you can host it or use a CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <!-- Optional: Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{{ url_for('index') }}">
+                Internify
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="{{ url_for('index') }}">Home</a>
+                <a class="navbar-item" href="{{ url_for('post_job') }}">Post a Job</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <section class="section">
+        <div class="container">
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+
+         <!-- Flash messages -->
+        <div class="container">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="notification is-success">
+                <button class="delete" id="close-flash"></button>
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+            <script>
+                // JavaScript to handle flash message close button
+                const closeButton = document.getElementById('close-flash');
+                closeButton.addEventListener('click', () => {
+                    const notification = closeButton.parentElement;
+                    notification.style.display = 'none'; // Hide the notification
+                });
+            </script>
+            {% endif %}
+            {% endwith %}
+        </div>
+    
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            &copy; <span id="current-year"></span> Vasudev Menon
+        </div>
+    </footer>
+
+    <!-- Optional: Include any custom JavaScript here -->
+    <script>
+        // JavaScript to set the current year in the footer
+        const currentYearElement = document.getElementById('current-year');
+        const currentYear = new Date().getFullYear();
+        currentYearElement.textContent = currentYear;
+    </script>
+    <script src="{{ url_for('static', filename='custom.js') }}"></script>
+    
+</body>
+</html>

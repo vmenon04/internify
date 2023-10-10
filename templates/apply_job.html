@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Apply for a Job{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="section">
+        <h2 class="title is-2">Apply for a Job</h2>
+        <h3 class="subtitle is-4">Job Title: {{ job.title }}</h3>
+        <form method="POST" action="{{ url_for('apply_job', job_id=job.id) }}">
+            {{ form.hidden_tag() }}
+            <div class="field">
+                <label class="label">Your Name</label>
+                <div class="control">
+                    <input class="input" type="text" name="name" placeholder="Enter your name" required>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Your Email</label>
+                <div class="control">
+                    <input class="input" type="email" name="email" placeholder="Enter your email" required>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button is-link" type="submit">Submit Application</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+{% endblock %}
