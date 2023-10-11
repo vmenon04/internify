@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Job Details{% endblock %}
+
+{% block content %}
+
+<section class="section">
+    <div class="container">
+            <h1 class="title">Internship Applicants</h1>
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Details</th>
+                        <!-- Add more columns as needed for additional applicant details -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for internship_application in internship_applications %}
+                    <tr>
+                        <td>{{ internship_application.intern.firstname + " " + internship_application.intern.lastname}}</td>
+                        <td>{{ internship_application.intern.email }}</td>
+                        <td><a href="{{ url_for('internship_application_details', application_id=internship_application.id) }}"> Application Details </a></td>
+                        <!-- Add more columns for additional applicant details -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ url_for('index') }}" class="button">Back to Job List</a>
+            
+            <a href="{{ url_for('delete_job', job_id=job.id) }}" class="button">Delete Job</a>
+    </div>
+</section>
+
+
+{% endblock %}

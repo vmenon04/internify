@@ -22,6 +22,9 @@
         <div class="navbar-menu">
             <div class="navbar-end">
                 <a class="navbar-item" href="{{ url_for('index') }}">Home</a>
+                <a class="navbar-item" href="{{ url_for('login') }}">Login</a>
+                <a class="navbar-item" href="{{ url_for('register') }}">Register</a>
+                <a class="navbar-item" href="{{ url_for('profile') }}">Profile</a>
                 <a class="navbar-item" href="{{ url_for('post_job') }}">Post a Job</a>
             </div>
         </div>
@@ -66,14 +69,13 @@
         </div>
     </footer>
 
-    <!-- Optional: Include any custom JavaScript here -->
     <script>
         // JavaScript to set the current year in the footer
         const currentYearElement = document.getElementById('current-year');
         const currentYear = new Date().getFullYear();
         currentYearElement.textContent = currentYear;
     </script>
-    <script src="{{ url_for('static', filename='custom.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='custom.js') }}"></script> -->
     
 </body>
 </html>
